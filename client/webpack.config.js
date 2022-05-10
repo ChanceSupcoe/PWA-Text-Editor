@@ -15,19 +15,16 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-       // Webpack plugin that generates our html file and injects our bundles. 
        new HtmlWebpackPlugin({
         template: './index.html',
         title: 'Just Another Text Editor'
       }),
      
-      // Injects our custom service worker
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
       }),
 
-        // Creates a manifest.json file.
         new WebpackPwaManifest({
           fingerprints: false,
           inject: true,
@@ -57,7 +54,6 @@ module.exports = () => {
         {
           test: /\.m?js$/,
           exclude: /node_modules/,
-          // We use babel-loader in order to use ES6.
           use: {
             loader: 'babel-loader',
             options: {
